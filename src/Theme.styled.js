@@ -5,7 +5,7 @@ export const theme = {
       darkGray: "#4F4F4F",
       lightGray: "#828282",
       softGray: "#E0E0E0",
-      white: "#F2F2F2",
+      gray: "#F2F2F2",
     },
     indicator: {
       orange: "#F8B76B",
