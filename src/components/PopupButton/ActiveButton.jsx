@@ -40,6 +40,14 @@ const RelativeIcon = styled.img`
   right: 20px;
 `;
 
+const InboxItemStyled = styled.div`
+  display: flex;
+  border-bottom: 1px solid ${(props) => props.theme.colors.lightGray};
+  margin-top: 26px;
+  gap: 17px;
+  padding-bottom: 32px;
+`;
+
 function ActiveButton({ data, handleCloseActiveButton }) {
   return (
     <ButtonContainer>
@@ -52,6 +60,18 @@ function ActiveButton({ data, handleCloseActiveButton }) {
           />
           <RelativeIcon src={searchBlackIcon} />
         </RelativeContainer>
+        <div className="inbox-list">
+          <InboxItemStyled>
+            <div className="user-img">
+              <h1>hl</h1>
+            </div>
+            <div className="chats">
+              <h2>109220-Naturalization</h2>
+              <h3>Cameron Phillips</h3>
+              <p>Please check this out</p>
+            </div>
+          </InboxItemStyled>
+        </div>
       </PopupContainer>
       <CircleButton bgColor={data[0].color}>
         <img
