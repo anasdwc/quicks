@@ -1,13 +1,18 @@
-import { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import { theme } from "./Theme.styled";
 import GlobalStyles from "./Global.styled";
+import Sidebar from "./components/Sidebar/Sidebar";
+import { Container, GridContainer } from "./styles/Container.styled";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyles />
-        <h1>Hello</h1>
+        <GridContainer>
+          <Sidebar />
+          <Container borderLeft />
+        </GridContainer>
       </>
     </ThemeProvider>
   );
