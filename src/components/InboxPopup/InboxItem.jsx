@@ -40,7 +40,7 @@ function InboxItem({ title, date, lastPerson, lastMessage, isGroup, hasRead }) {
           <h2>{title}</h2>
           <p>{date}</p>
         </div>
-        <h3>{lastPerson} :</h3>
+        {lastPerson && <h3>{lastPerson} :</h3>}
         <p>{lastMessage}</p>
       </div>
       {!hasRead && <div className="isRead"></div>}
