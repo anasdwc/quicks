@@ -12,4 +12,20 @@ const GridContainer = styled.div`
   grid-template-columns: 0.3fr 1.7fr;
 `;
 
-export { Container, GridContainer };
+const PopupContainer = styled.div`
+  background-color: #fff;
+  margin-bottom: 16px;
+  height: 60vh;
+  width: 30vw;
+  padding: 20px 34px;
+  position: absolute;
+  bottom: 52px;
+  right: 0;
+  border-radius: 5px;
+`;
+
+const RelativeContainer = styled.div`
+  position: relative;
+`;
+
+export { Container, GridContainer, PopupContainer, RelativeContainer };
