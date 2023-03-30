@@ -10,6 +10,18 @@ import InboxPopup from "../InboxPopup/InboxPopup";
 
 const chatsData = [
   {
+    id: 6,
+    user: "Mary Hilda",
+    message: "Juadahis updates yea?",
+    date: "19:32",
+  },
+  {
+    id: 0,
+    user: "Mary Hilda",
+    message: "Just Fill me in for his updates yea?",
+    date: "19:32",
+  },
+  {
     id: 1,
     message: "No worries. It will be completed ASAP. I've asked him yesterday.",
     date: "19:32",
@@ -20,24 +32,28 @@ const chatsData = [
     message:
       "Hello Obaidullah, I will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
     date: "19:32",
+    dateTime: "Today June 09, 2021",
   },
   {
     id: 3,
     message:
       "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary.",
     date: "19:32",
+    dateTime: "Today June 09, 2021",
   },
   {
     id: 4,
     user: "Mary Hilda",
     message: "Sure thing, Claren",
     date: "19:32",
+    dateTime: "Today June 09, 2021",
   },
   {
     id: 5,
     user: "Obaidullah Amarkhil",
     message: "Morning. I'll try to do them. Thanks",
     date: "19:32",
+    dateTime: "New",
   },
 ];
 

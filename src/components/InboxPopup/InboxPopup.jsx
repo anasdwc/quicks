@@ -25,6 +25,7 @@ const Flexxxx = styled.div`
   justify-content: ${(props) => props.justifyContent || "normal"};
   height: ${(props) => props.height || "auto"};
   gap: ${(props) => props.gap};
+  overflow-y: scroll;
 `;
 
 const ButtonIconStyled = styled.button`
@@ -210,7 +211,7 @@ function InboxPopup({ inboxData }) {
             </FlexContainerStyled>
             <Flexxxx
               flexDirection="column"
-              style={{ flexGrow: 1, paddingTop: "40px", paddingBottom: "25px" }}
+              style={{ flexGrow: 1, marginTop: "40px", marginBottom: "25px" }}
             >
               {selectedChat.chats.map((chat, idx) => (
                 <ChatItemContainer
