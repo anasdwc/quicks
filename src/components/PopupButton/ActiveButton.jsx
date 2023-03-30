@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   ButtonContainer,
   CircleButton,
@@ -44,11 +44,64 @@ const inboxData = [
   },
 ];
 
+import styled, { keyframes } from "styled-components";
+
+const spin = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const LoadingStyled = styled.div`
+  width: 65px;
+  height: 65px;
+  animation: ${spin} 1.5s infinite linear;
+  border-radius: 50%;
+  border: solid 10px #c4c4c4;
+  border-right-color: #f8f8f8;
+  border-bottom-color: #f8f8f8;
+  margin-bottom: 18px;
+`;
+
+const ColorParagraph = styled.p`
+  color: ${(props) => props.theme.colors[`${props.color}`]};
+  font-weight: bold;
+`;
+
+const FlexCenter = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
+
 function ActiveButton({ data, handleCloseActiveButton }) {
+  const [datas, setDatas] = useState([]);
+  const [inboxLoading, setInboxLoading] = useState(true);
+
+  // Simulate loading
+  useEffect(() => {
+    setTimeout(() => {
+      setDatas(inboxData);
+      setInboxLoading(false);
+    }, 3000);
+  }, []);
+
   return (
     <ButtonContainer>
       <PopupContainer>
-        {data[0].id == "inbox" && <InboxPopup inboxData={inboxData} />}
+        {inboxLoading ? (
+          <FlexCenter>
+            <LoadingStyled />
+            <ColorParagraph color="darkGray">Loading Chats...</ColorParagraph>
+          </FlexCenter>
+        ) : (
+          data[0].id == "inbox" && <InboxPopup inboxData={datas} />
+        )}
       </PopupContainer>
       <CircleButton bgColor={data[0].color}>
         <img

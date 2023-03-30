@@ -7,8 +7,11 @@ function InboxPopup({ inboxData }) {
     <>
       <SearchInput />
       <div className="inbox-list">
-        {inboxData.map((inbox) => (
-          <InboxItem {...inbox} />
+        {inboxData.map((inbox, idx) => (
+          <InboxItem
+            key={idx}
+            {...inbox}
+          />
         ))}
       </div>
     </>
