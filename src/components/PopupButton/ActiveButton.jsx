@@ -39,21 +39,20 @@ const chatsData = [
     message:
       "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary.",
     date: "19:32",
-    dateTime: "Today June 09, 2021",
   },
   {
     id: 4,
     user: "Mary Hilda",
     message: "Sure thing, Claren",
     date: "19:32",
-    dateTime: "Today June 09, 2021",
   },
   {
     id: 5,
     user: "Obaidullah Amarkhil",
     message: "Morning. I'll try to do them. Thanks",
     date: "19:32",
-    dateTime: "New",
+    dateTime: "New Message",
+    isNew: true,
   },
 ];
 

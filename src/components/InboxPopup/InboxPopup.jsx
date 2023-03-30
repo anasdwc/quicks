@@ -26,6 +26,7 @@ const Flexxxx = styled.div`
   height: ${(props) => props.height || "auto"};
   gap: ${(props) => props.gap};
   overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 const ButtonIconStyled = styled.button`
@@ -137,6 +138,31 @@ const InfoContainer = styled.div`
   }
 `;
 
+const ParagraphLine = styled.p`
+  text-align: center;
+  margin-bottom: 10px;
+  color: ${(props) =>
+    props.status ? props.theme.colors.red : props.theme.colors.darkGray};
+  font-weight: bold;
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+
+  &:after,
+  &:before {
+    content: " ";
+    width: 34%;
+    background-color: ${(props) =>
+      props.status == true
+        ? props.theme.colors.red
+        : props.theme.colors.darkGray};
+    display: inline-block;
+    height: 1px;
+  }
+`;
+
 function InboxPopup({ inboxData }) {
   const [activeChat, setActiveChat] = useState();
   const [selectedChat, setSelectedChat] = useState();
@@ -214,59 +240,68 @@ function InboxPopup({ inboxData }) {
               style={{ flexGrow: 1, marginTop: "40px", marginBottom: "25px" }}
             >
               {selectedChat.chats.map((chat, idx) => (
-                <ChatItemContainer
-                  key={idx}
-                  user={chat.user}
-                  outlineColor={
-                    chat.user == "Mary Hilda"
-                      ? "outlineYellow"
-                      : chat.user == "Obaidullah Amarkhil"
-                      ? "outlineGreen"
-                      : chat.user == "FastVisa Support"
-                      ? "blue"
-                      : ""
-                  }
-                >
-                  <h3>{chat.user || "You"}</h3>
-                  <BubleChatContainer user={chat.user}>
-                    {!chat.isSupport && (
-                      <ButtonIconStyled
-                        className="bubleAction"
-                        size="16px"
-                        margin="0"
-                        onClick={() => {
-                          setOptionChat(!optionChat);
-                          chat.isOption = optionChat;
-                        }}
+                <>
+                  {chat.dateTime && (
+                    <div>
+                      <ParagraphLine status={chat.isNew}>
+                        {chat.dateTime}
+                      </ParagraphLine>
+                    </div>
+                  )}
+                  <ChatItemContainer
+                    key={idx}
+                    user={chat.user}
+                    outlineColor={
+                      chat.user == "Mary Hilda"
+                        ? "outlineYellow"
+                        : chat.user == "Obaidullah Amarkhil"
+                        ? "outlineGreen"
+                        : chat.user == "FastVisa Support"
+                        ? "blue"
+                        : ""
+                    }
+                  >
+                    <h3>{chat.user || "You"}</h3>
+                    <BubleChatContainer user={chat.user}>
+                      {!chat.isSupport && (
+                        <ButtonIconStyled
+                          className="bubleAction"
+                          size="16px"
+                          margin="0"
+                          onClick={() => {
+                            setOptionChat(!optionChat);
+                            chat.isOption = optionChat;
+                          }}
+                        >
+                          <img
+                            src={moreIcon}
+                            alt=""
+                          />
+                          {chat.isOption && (
+                            <OptionChatContainer>
+                              <p>Edit</p>
+                              <p>Delete</p>
+                            </OptionChatContainer>
+                          )}
+                        </ButtonIconStyled>
+                      )}
+                      <BubleChat
+                        baseColor={
+                          chat.user == "Mary Hilda"
+                            ? "baseYellow"
+                            : chat.user == "Obaidullah Amarkhil"
+                            ? "baseGreen"
+                            : chat.user == "FastVisa Support"
+                            ? "customGray"
+                            : ""
+                        }
                       >
-                        <img
-                          src={moreIcon}
-                          alt=""
-                        />
-                        {chat.isOption && (
-                          <OptionChatContainer>
-                            <p>Edit</p>
-                            <p>Delete</p>
-                          </OptionChatContainer>
-                        )}
-                      </ButtonIconStyled>
-                    )}
-                    <BubleChat
-                      baseColor={
-                        chat.user == "Mary Hilda"
-                          ? "baseYellow"
-                          : chat.user == "Obaidullah Amarkhil"
-                          ? "baseGreen"
-                          : chat.user == "FastVisa Support"
-                          ? "customGray"
-                          : ""
-                      }
-                    >
-                      <p>{chat.message}</p>
-                      <p className="date">{chat.date}</p>
-                    </BubleChat>
-                  </BubleChatContainer>
-                </ChatItemContainer>
+                        <p>{chat.message}</p>
+                        <p className="date">{chat.date}</p>
+                      </BubleChat>
+                    </BubleChatContainer>
+                  </ChatItemContainer>
+                </>
               ))}
             </Flexxxx>
             {selectedChat.isSupport && (
