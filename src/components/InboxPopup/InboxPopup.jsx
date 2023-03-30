@@ -8,6 +8,7 @@ import closeIcon from "../../assets/close.svg";
 import moreIcon from "../../assets/more.svg";
 import { PargraphStyled } from "../../styles/Text.styled";
 import { InputStyled } from "../../styles/Popup.styled";
+import { LoadingStyled } from "../../styles/Loading.styled";
 
 const FlexContainerStyled = styled.div`
   display: flex;
@@ -119,14 +120,26 @@ const OptionChatContainer = styled.div`
   }
 `;
 
+const InfoContainer = styled.div`
+  padding: 10px;
+  margin-bottom: 12px;
+  background-color: ${({ theme }) => theme.colors.softBlue};
+  font-size: 14px;
+  border-radius: 5px;
+  display: flex;
+  gap: 6px;
+
+  & > p {
+    margin: auto 0;
+    color: ${({ theme }) => theme.colors.darkGray};
+    font-weight: bold;
+  }
+`;
+
 function InboxPopup({ inboxData }) {
   const [activeChat, setActiveChat] = useState();
   const [selectedChat, setSelectedChat] = useState();
   const [optionChat, setOptionChat] = useState(false);
-
-  useEffect(() => {}, [selectedChat, optionChat]);
-
-  console.log(selectedChat);
 
   const handleActiveChat = (id) => {
     setActiveChat(id);
@@ -176,13 +189,15 @@ function InboxPopup({ inboxData }) {
                 <PargraphStyled fontWeight="bold">
                   {selectedChat.title}
                 </PargraphStyled>
-                <PargraphStyled
-                  color="#333"
-                  fontSize={14}
-                  margin="9px 0 0"
-                >
-                  {selectedChat.participants} Participants
-                </PargraphStyled>
+                {selectedChat.participants && (
+                  <PargraphStyled
+                    color="#333"
+                    fontSize={14}
+                    margin="9px 0 0"
+                  >
+                    {selectedChat.participants} Participants
+                  </PargraphStyled>
+                )}
               </div>
               <div className="button-container">
                 <ButtonIconStyled onClick={() => setActiveChat()}>
@@ -206,37 +221,43 @@ function InboxPopup({ inboxData }) {
                       ? "outlineYellow"
                       : chat.user == "Obaidullah Amarkhil"
                       ? "outlineGreen"
+                      : chat.user == "FastVisa Support"
+                      ? "blue"
                       : ""
                   }
                 >
                   <h3>{chat.user || "You"}</h3>
                   <BubleChatContainer user={chat.user}>
-                    <ButtonIconStyled
-                      className="bubleAction"
-                      size="16px"
-                      margin="0"
-                      onClick={() => {
-                        setOptionChat(!optionChat);
-                        chat.isOption = optionChat;
-                      }}
-                    >
-                      <img
-                        src={moreIcon}
-                        alt=""
-                      />
-                      {chat.isOption === true && (
-                        <OptionChatContainer>
-                          <p>Edit</p>
-                          <p>Delete</p>
-                        </OptionChatContainer>
-                      )}
-                    </ButtonIconStyled>
+                    {!chat.isSupport && (
+                      <ButtonIconStyled
+                        className="bubleAction"
+                        size="16px"
+                        margin="0"
+                        onClick={() => {
+                          setOptionChat(!optionChat);
+                          chat.isOption = optionChat;
+                        }}
+                      >
+                        <img
+                          src={moreIcon}
+                          alt=""
+                        />
+                        {chat.isOption && (
+                          <OptionChatContainer>
+                            <p>Edit</p>
+                            <p>Delete</p>
+                          </OptionChatContainer>
+                        )}
+                      </ButtonIconStyled>
+                    )}
                     <BubleChat
                       baseColor={
                         chat.user == "Mary Hilda"
                           ? "baseYellow"
                           : chat.user == "Obaidullah Amarkhil"
                           ? "baseGreen"
+                          : chat.user == "FastVisa Support"
+                          ? "customGray"
                           : ""
                       }
                     >
@@ -247,6 +268,19 @@ function InboxPopup({ inboxData }) {
                 </ChatItemContainer>
               ))}
             </Flexxxx>
+            {selectedChat.isSupport && (
+              <InfoContainer>
+                <LoadingStyled
+                  marginBottom="0"
+                  margin="6px"
+                  size="18px"
+                  borderSize="2px"
+                  colorActive="blue"
+                  color="customGray"
+                />
+                <p>Please wait while we connect you with one of our team...</p>
+              </InfoContainer>
+            )}
             <Flexxxx gap="10px">
               <InputStyled
                 type="text"

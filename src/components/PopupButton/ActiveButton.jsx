@@ -8,6 +8,39 @@ import { PopupContainer } from "../../styles/Container.styled";
 import { PargraphStyled } from "../../styles/Text.styled";
 import InboxPopup from "../InboxPopup/InboxPopup";
 
+const chatsData = [
+  {
+    id: 1,
+    message: "No worries. It will be completed ASAP. I've asked him yesterday.",
+    date: "19:32",
+  },
+  {
+    id: 2,
+    user: "Mary Hilda",
+    message:
+      "Hello Obaidullah, I will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
+    date: "19:32",
+  },
+  {
+    id: 3,
+    message:
+      "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary.",
+    date: "19:32",
+  },
+  {
+    id: 4,
+    user: "Mary Hilda",
+    message: "Sure thing, Claren",
+    date: "19:32",
+  },
+  {
+    id: 5,
+    user: "Obaidullah Amarkhil",
+    message: "Morning. I'll try to do them. Thanks",
+    date: "19:32",
+  },
+];
+
 const inboxData = [
   {
     id: 1,
@@ -18,39 +51,7 @@ const inboxData = [
     isGroup: true,
     hasRead: false,
     participants: 3,
-    chats: [
-      {
-        id: 1,
-        message:
-          "No worries. It will be completed ASAP. I've asked him yesterday.",
-        date: "19:32",
-      },
-      {
-        id: 2,
-        user: "Mary Hilda",
-        message:
-          "Hello Obaidullah, I will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
-        date: "19:32",
-      },
-      {
-        id: 3,
-        message:
-          "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary.",
-        date: "19:32",
-      },
-      {
-        id: 4,
-        user: "Mary Hilda",
-        message: "Sure thing, Claren",
-        date: "19:32",
-      },
-      {
-        id: 5,
-        user: "Obaidullah Amarkhil",
-        message: "Morning. I'll try to do them. Thanks",
-        date: "19:32",
-      },
-    ],
+    chats: chatsData,
   },
   {
     id: 2,
@@ -62,6 +63,7 @@ const inboxData = [
     isGroup: true,
     hasRead: true,
     participants: 3,
+    chats: chatsData,
   },
   {
     id: 3,
@@ -73,6 +75,7 @@ const inboxData = [
     isGroup: true,
     hasRead: true,
     participants: 3,
+    chats: chatsData,
   },
   {
     id: 4,
@@ -82,30 +85,27 @@ const inboxData = [
     lastMessage: "Hey there! Welcome to your inbox.",
     isGroup: false,
     hasRead: true,
+    isSupport: true,
+    chats: [
+      {
+        id: 1,
+        user: "FastVisa Support",
+        message:
+          "Hey there. Welcome to your inbox! Contact us for more information and help about anything! We'll send you a response as soon as possible.",
+        date: "19:32",
+        isSupport: true,
+      },
+      {
+        id: 2,
+        message: "Hi, I need help with something can you help me?",
+        date: "19:32",
+      },
+    ],
   },
 ];
 
-import styled, { keyframes } from "styled-components";
-
-const spin = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
-const LoadingStyled = styled.div`
-  width: 65px;
-  height: 65px;
-  animation: ${spin} 1.5s infinite linear;
-  border-radius: 50%;
-  border: solid 10px #c4c4c4;
-  border-right-color: #f8f8f8;
-  border-bottom-color: #f8f8f8;
-  margin-bottom: 18px;
-`;
+import styled from "styled-components";
+import { LoadingStyled } from "../../styles/Loading.styled";
 
 const FlexCenter = styled.div`
   display: flex;

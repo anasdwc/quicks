@@ -22,5 +22,6 @@ export const theme = {
     softLightGreen: "#CBF1C2",
     softPurple: "#CFCEF9",
     softLightPurple: "#F9E0FD",
+    customGray: "#F8F8F8",
   },
 };
