@@ -4,9 +4,17 @@ import { GroupIconStyled, IconStyled } from "../../styles/Icon.styled";
 import personGrayIcon from "../../assets/person-gray.svg";
 import personWhiteIcon from "../../assets/person-white.svg";
 
-function InboxItem({ title, date, lastPerson, lastMessage, isGroup, hasRead }) {
+function InboxItem({
+  title,
+  date,
+  lastPerson,
+  lastMessage,
+  isGroup,
+  hasRead,
+  handleActiveChat,
+}) {
   return (
-    <InboxItemStyled>
+    <InboxItemStyled onClick={handleActiveChat}>
       <GroupIconStyled>
         {isGroup ? (
           <>

@@ -5,18 +5,55 @@ import {
   CloseButton,
 } from "../../styles/Button.styled";
 import { PopupContainer } from "../../styles/Container.styled";
+import { PargraphStyled } from "../../styles/Text.styled";
 import InboxPopup from "../InboxPopup/InboxPopup";
 
 const inboxData = [
   {
+    id: 1,
     title: "109220-Naturalization",
     date: "January, 1 2021 19:10",
     lastPerson: "Cameron Phillips",
     lastMessage: "Please check this out",
     isGroup: true,
     hasRead: false,
+    participants: 3,
+    chats: [
+      {
+        id: 1,
+        message:
+          "No worries. It will be completed ASAP. I've asked him yesterday.",
+        date: "19:32",
+      },
+      {
+        id: 2,
+        user: "Mary Hilda",
+        message:
+          "Hello Obaidullah, I will be your case advisor for case #029290. I have assigned some homework for you to fill. Please keep up with the due dates. Should you have any questions, you can message me anytime. Thanks.",
+        date: "19:32",
+      },
+      {
+        id: 3,
+        message:
+          "Please contact Mary for questions regarding the case bcs she will be managing your forms from now on! Thanks Mary.",
+        date: "19:32",
+      },
+      {
+        id: 4,
+        user: "Mary Hilda",
+        message: "Sure thing, Claren",
+        date: "19:32",
+      },
+      {
+        id: 5,
+        user: "Obaidullah Amarkhil",
+        message: "Morning. I'll try to do them. Thanks",
+        date: "19:32",
+      },
+    ],
   },
   {
+    id: 2,
     title:
       "Jeannette Moraima Guaman Chamba (Huttto I-589) [ Hutto Follow Up - Brief Service ]",
     date: "02/06/2021 10:45",
@@ -24,8 +61,10 @@ const inboxData = [
     lastMessage: "Hey, please read.",
     isGroup: true,
     hasRead: true,
+    participants: 3,
   },
   {
+    id: 3,
     title: "8405-Diana SALAZAR MUNGUIA",
     date: "01/06/2021 12:19",
     lastPerson: "Cameron Phillips",
@@ -33,8 +72,10 @@ const inboxData = [
       "I understand your intial concerns and thats very valid, Elizabeth. But you...",
     isGroup: true,
     hasRead: true,
+    participants: 3,
   },
   {
+    id: 4,
     title: "FastVisa Support",
     date: "01/06/2021 12:19",
     lastPerson: "",
@@ -66,11 +107,6 @@ const LoadingStyled = styled.div`
   margin-bottom: 18px;
 `;
 
-const ColorParagraph = styled.p`
-  color: ${(props) => props.theme.colors[`${props.color}`]};
-  font-weight: bold;
-`;
-
 const FlexCenter = styled.div`
   display: flex;
   flex-direction: column;
@@ -97,7 +133,7 @@ function ActiveButton({ data, handleCloseActiveButton }) {
         {inboxLoading ? (
           <FlexCenter>
             <LoadingStyled />
-            <ColorParagraph color="darkGray">Loading Chats...</ColorParagraph>
+            <PargraphStyled color="darkGray">Loading Chats...</PargraphStyled>
           </FlexCenter>
         ) : (
           data[0].id == "inbox" && <InboxPopup inboxData={datas} />

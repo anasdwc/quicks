@@ -1,19 +1,262 @@
-import React from "react";
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 import InboxItem from "./InboxItem";
 import SearchInput from "./SearchInput";
 
+import arrowBackIcon from "../../assets/arrow_back.svg";
+import closeIcon from "../../assets/close.svg";
+import moreIcon from "../../assets/more.svg";
+import { PargraphStyled } from "../../styles/Text.styled";
+import { InputStyled } from "../../styles/Popup.styled";
+
+const FlexContainerStyled = styled.div`
+  display: flex;
+  gap: 16px;
+  align-items: ${(props) => props.alignItems || "normal"};
+  border-bottom: ${(props) => props.borderBottom || "none"};
+  margin: -20px -34px;
+  padding: 18px 34px;
+`;
+
+const Flexxxx = styled.div`
+  display: flex;
+  flex-direction: ${(props) => props.flexDirection || "row"};
+  justify-content: ${(props) => props.justifyContent || "normal"};
+  height: ${(props) => props.height || "auto"};
+  gap: ${(props) => props.gap};
+`;
+
+const ButtonIconStyled = styled.button`
+  padding: 0;
+  width: fit-content;
+  height: fit-content;
+  border: none;
+  background-color: transparent;
+  margin: ${(props) => props.margin || "auto"};
+
+  & > img {
+    width: ${(props) => props.size || "24px"};
+    height: ${(props) => props.size || "24px"};
+  }
+`;
+
+const ButtonStyled = styled.button`
+  background-color: ${(props) =>
+    props.theme.colors[`${props.bgColor || "blue"}`]};
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  color: white;
+`;
+
+const BubleChat = styled.div`
+  background-color: ${(props) =>
+    props.theme.colors[`${props.baseColor}` || "basePurple"]};
+  border-radius: 5px;
+  padding: 10px;
+  width: fit-content;
+  max-width: 80%;
+
+  & > p {
+    color: ${(props) => props.theme.colors.darkGray};
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  & > .date {
+    margin-top: 8px;
+  }
+`;
+
+const BubleChatContainer = styled.div`
+  margin: 7px 0 12px;
+  display: flex;
+  justify-content: ${(props) => (props.user ? "start" : "end")};
+  gap: 5px;
+  width: 100%;
+  position: relative;
+
+  & > .bubleAction {
+    order: ${(props) => (props.user ? 1 : 0)};
+  }
+`;
+
+const ChatItemContainer = styled.div`
+  margin-bottom: 10px;
+
+  & > h3 {
+    font-size: 14px;
+    color: ${(props) =>
+      props.theme.colors[`${props.outlineColor}` || "outlinePurple"]};
+    font-weight: bold;
+  }
+
+  ${({ user }) =>
+    !user &&
+    `
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  `}
+`;
+
+const OptionChatContainer = styled.div`
+  background-color: #fff;
+  position: absolute;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  width: 126px;
+
+  & > p {
+    padding: 14px 0 11px 18px;
+    text-align: left;
+    color: ${({ theme }) => theme.colors.red};
+  }
+
+  & > p:first-child {
+    border-bottom: 1px solid #bdbdbd;
+    color: ${({ theme }) => theme.colors.blue};
+  }
+`;
+
 function InboxPopup({ inboxData }) {
+  const [activeChat, setActiveChat] = useState();
+  const [selectedChat, setSelectedChat] = useState();
+  const [optionChat, setOptionChat] = useState(false);
+
+  useEffect(() => {}, [selectedChat, optionChat]);
+
+  console.log(selectedChat);
+
+  const handleActiveChat = (id) => {
+    setActiveChat(id);
+    const filterChat = inboxData.filter((chat) => chat.id == id);
+    setSelectedChat(...filterChat);
+  };
+
   return (
     <>
-      <SearchInput />
-      <div className="inbox-list">
-        {inboxData.map((inbox, idx) => (
-          <InboxItem
-            key={idx}
-            {...inbox}
-          />
-        ))}
-      </div>
+      {!activeChat && (
+        <>
+          <SearchInput />
+          <div className="inbox-list">
+            {inboxData.map((inbox) => (
+              <InboxItem
+                key={inbox.id}
+                {...inbox}
+                handleActiveChat={() => handleActiveChat(inbox.id)}
+              />
+            ))}
+          </div>
+        </>
+      )}
+      {activeChat && (
+        <>
+          <Flexxxx
+            justifyContent="space-between"
+            height="100%"
+            flexDirection="column"
+          >
+            <FlexContainerStyled
+              alignItems="center"
+              borderBottom="1px solid #BDBDBD"
+            >
+              <div className="button-container">
+                <ButtonIconStyled onClick={() => setActiveChat()}>
+                  <img
+                    src={arrowBackIcon}
+                    alt=""
+                  />
+                </ButtonIconStyled>
+              </div>
+              <div
+                className="header-title"
+                style={{ flexGrow: 1 }}
+              >
+                <PargraphStyled fontWeight="bold">
+                  {selectedChat.title}
+                </PargraphStyled>
+                <PargraphStyled
+                  color="#333"
+                  fontSize={14}
+                  margin="9px 0 0"
+                >
+                  {selectedChat.participants} Participants
+                </PargraphStyled>
+              </div>
+              <div className="button-container">
+                <ButtonIconStyled onClick={() => setActiveChat()}>
+                  <img
+                    src={closeIcon}
+                    alt=""
+                  />
+                </ButtonIconStyled>
+              </div>
+            </FlexContainerStyled>
+            <Flexxxx
+              flexDirection="column"
+              style={{ flexGrow: 1, paddingTop: "40px", paddingBottom: "25px" }}
+            >
+              {selectedChat.chats.map((chat, idx) => (
+                <ChatItemContainer
+                  key={idx}
+                  user={chat.user}
+                  outlineColor={
+                    chat.user == "Mary Hilda"
+                      ? "outlineYellow"
+                      : chat.user == "Obaidullah Amarkhil"
+                      ? "outlineGreen"
+                      : ""
+                  }
+                >
+                  <h3>{chat.user || "You"}</h3>
+                  <BubleChatContainer user={chat.user}>
+                    <ButtonIconStyled
+                      className="bubleAction"
+                      size="16px"
+                      margin="0"
+                      onClick={() => {
+                        setOptionChat(!optionChat);
+                        chat.isOption = optionChat;
+                      }}
+                    >
+                      <img
+                        src={moreIcon}
+                        alt=""
+                      />
+                      {chat.isOption === true && (
+                        <OptionChatContainer>
+                          <p>Edit</p>
+                          <p>Delete</p>
+                        </OptionChatContainer>
+                      )}
+                    </ButtonIconStyled>
+                    <BubleChat
+                      baseColor={
+                        chat.user == "Mary Hilda"
+                          ? "baseYellow"
+                          : chat.user == "Obaidullah Amarkhil"
+                          ? "baseGreen"
+                          : ""
+                      }
+                    >
+                      <p>{chat.message}</p>
+                      <p className="date">{chat.date}</p>
+                    </BubleChat>
+                  </BubleChatContainer>
+                </ChatItemContainer>
+              ))}
+            </Flexxxx>
+            <Flexxxx gap="10px">
+              <InputStyled
+                type="text"
+                placeholder="Type a new message"
+              />
+              <ButtonStyled>Send</ButtonStyled>
+            </Flexxxx>
+          </Flexxxx>
+        </>
+      )}
     </>
   );
 }
