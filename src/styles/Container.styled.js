@@ -17,7 +17,7 @@ const PopupContainer = styled.div`
   margin-bottom: 16px;
   height: 60vh;
   width: 30vw;
-  padding: 20px 34px;
+  padding: 24px 32px;
   position: absolute;
   bottom: 52px;
   right: 0;

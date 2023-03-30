@@ -10,10 +10,10 @@ const InputStyled = styled.input`
 const InboxItemStyled = styled.div`
   display: flex;
   border-bottom: 1px solid ${(props) => props.theme.colors.lightGray};
-  margin-top: 26px;
+  margin-top: 22px;
   gap: 17px;
   position: relative;
-  padding-bottom: 32px;
+  padding-bottom: 22px;
 
   & > .isRead {
     background-color: red;
