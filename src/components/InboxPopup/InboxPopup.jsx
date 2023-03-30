@@ -2,12 +2,14 @@ import React from "react";
 import InboxItem from "./InboxItem";
 import SearchInput from "./SearchInput";
 
-function InboxPopup() {
+function InboxPopup({ inboxData }) {
   return (
     <>
       <SearchInput />
       <div className="inbox-list">
-        <InboxItem />
+        {inboxData.map((inbox) => (
+          <InboxItem {...inbox} />
+        ))}
       </div>
     </>
   );

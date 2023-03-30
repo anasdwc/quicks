@@ -4,11 +4,11 @@ import { GroupIconStyled, IconStyled } from "../../styles/Icon.styled";
 import personGrayIcon from "../../assets/person-gray.svg";
 import personWhiteIcon from "../../assets/person-white.svg";
 
-function InboxItem({ group = true }) {
+function InboxItem({ title, date, lastPerson, lastMessage, isGroup, hasRead }) {
   return (
     <InboxItemStyled>
       <GroupIconStyled>
-        {group ? (
+        {isGroup ? (
           <>
             <IconStyled
               bgColor="softGray"
@@ -31,19 +31,19 @@ function InboxItem({ group = true }) {
           </>
         ) : (
           <IconStyled bgColor="blue">
-            <p>F</p>
+            <p>{title[0]}</p>
           </IconStyled>
         )}
       </GroupIconStyled>
       <div className="chats">
         <div className="chats-date">
-          <h2>109220-Naturalization</h2>
-          <p>January, 1 2021 19:10</p>
+          <h2>{title}</h2>
+          <p>{date}</p>
         </div>
-        <h3>Cameron Phillips</h3>
-        <p>Please check this out</p>
+        <h3>{lastPerson} :</h3>
+        <p>{lastMessage}</p>
       </div>
-      <div className="isRead"></div>
+      {!hasRead && <div className="isRead"></div>}
     </InboxItemStyled>
   );
 }
