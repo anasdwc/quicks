@@ -68,6 +68,7 @@ const HeaderTaskStyled = styled.div`
     justify-content: center;
 
     select {
+      background-color: white;
       width: 120px;
       height: 100%;
       justify-content: center;
