@@ -5,7 +5,6 @@ import {
   CloseButton,
 } from "../../styles/Button.styled";
 import { PopupContainer } from "../../styles/Container.styled";
-import { PargraphStyled } from "../../styles/Text.styled";
 import InboxPopup from "../InboxPopup/InboxPopup";
 
 const chatsData = [
@@ -120,16 +119,8 @@ const inboxData = [
 ];
 
 import styled from "styled-components";
-import { LoadingStyled } from "../../styles/Loading.styled";
 import TaskPopup from "../TaskPopup/TaskPopup";
-
-const FlexCenter = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`;
+import Loading from "../Loading";
 
 function ActiveButton({ data, handleCloseActiveButton }) {
   const [datas, setDatas] = useState([]);
@@ -146,11 +137,8 @@ function ActiveButton({ data, handleCloseActiveButton }) {
   return (
     <ButtonContainer>
       <PopupContainer>
-        {inboxLoading ? (
-          <FlexCenter>
-            <LoadingStyled />
-            <PargraphStyled color="darkGray">Loading Chats...</PargraphStyled>
-          </FlexCenter>
+        {inboxLoading && data[0].id == "inbox" ? (
+          <Loading text="Loading Chats..." />
         ) : data[0].id == "inbox" ? (
           <InboxPopup inboxData={datas} />
         ) : (

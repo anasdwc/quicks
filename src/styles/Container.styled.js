@@ -34,7 +34,7 @@ const FlexContainer = styled.div`
   justify-content: ${(props) => props.justifyContent || "normal"};
   height: ${(props) => props.height || "auto"};
   gap: ${(props) => props.gap};
-  overflow-y: scroll;
+  overflow-y: ${(props) => props.overflowY || "scroll"};
   overflow-x: hidden;
 `;
 
