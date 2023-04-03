@@ -57,7 +57,7 @@ function TaskPopup() {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 500);
+    }, 1500);
   }, []);
 
   return (

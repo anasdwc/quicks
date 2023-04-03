@@ -131,7 +131,7 @@ function ActiveButton({ data, handleCloseActiveButton }) {
     setTimeout(() => {
       setDatas(inboxData);
       setInboxLoading(false);
-    }, 500);
+    }, 1500);
   }, []);
 
   return (

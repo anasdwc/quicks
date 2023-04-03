@@ -15,13 +15,21 @@ const GridContainer = styled.div`
 const PopupContainer = styled.div`
   background-color: #fff;
   margin-bottom: 16px;
-  height: 60vh;
-  width: 30vw;
+  height: 70vh;
+  width: 708px;
   padding: 24px 32px;
   position: absolute;
   bottom: 52px;
   right: 0;
   border-radius: 5px;
+
+  display: flex;
+  flex-direction: column;
+
+  & > .inbox-list {
+    height: 100%;
+    overflow-y: scroll;
+  }
 `;
 
 const RelativeContainer = styled.div`
