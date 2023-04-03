@@ -121,6 +121,7 @@ const inboxData = [
 
 import styled from "styled-components";
 import { LoadingStyled } from "../../styles/Loading.styled";
+import TaskPopup from "../TaskPopup/TaskPopup";
 
 const FlexCenter = styled.div`
   display: flex;
@@ -150,8 +151,10 @@ function ActiveButton({ data, handleCloseActiveButton }) {
             <LoadingStyled />
             <PargraphStyled color="darkGray">Loading Chats...</PargraphStyled>
           </FlexCenter>
+        ) : data[0].id == "inbox" ? (
+          <InboxPopup inboxData={datas} />
         ) : (
-          data[0].id == "inbox" && <InboxPopup inboxData={datas} />
+          <TaskPopup />
         )}
       </PopupContainer>
       <CircleButton bgColor={data[0].color}>

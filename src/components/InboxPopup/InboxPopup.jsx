@@ -27,20 +27,18 @@ function InboxPopup({ inboxData }) {
         />
       )}
       {activeChat && (
-        <>
-          <FlexContainer
-            justifyContent="space-between"
-            height="100%"
-            flexDirection="column"
-          >
-            <PopupTitle
-              selectedChat={selectedChat}
-              handleClosePopup={handleClosePopup}
-            />
-            <BubleChatList selectedChat={selectedChat} />
-            <BubleChatInput />
-          </FlexContainer>
-        </>
+        <FlexContainer
+          justifyContent="space-between"
+          height="100%"
+          flexDirection="column"
+        >
+          <PopupTitle
+            selectedChat={selectedChat}
+            handleClosePopup={handleClosePopup}
+          />
+          <BubleChatList selectedChat={selectedChat} />
+          <BubleChatInput />
+        </FlexContainer>
       )}
     </>
   );
