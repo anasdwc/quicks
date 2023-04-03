@@ -57,6 +57,7 @@ const OptionChatContainer = styled.div`
   border: 1px solid #bdbdbd;
   border-radius: 5px;
   width: 126px;
+  right: ${(props) => props.right || "auto"};
 
   & > p {
     padding: 14px 0 11px 18px;

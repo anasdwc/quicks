@@ -95,14 +95,22 @@ const TaskItemStyled = styled(InboxItemStyled)`
 
   & > .task-body {
     flex: 1;
+
     & > .task-body-header {
       display: flex;
       align-items: center;
       color: #4f4f4f;
       font-size: 12px;
 
+      .label {
+        flex: 1.2;
+      }
+
       label {
         font-weight: 700;
+        &.is-done {
+          text-decoration: line-through;
+        }
       }
 
       & > .action-group {
@@ -115,6 +123,10 @@ const TaskItemStyled = styled(InboxItemStyled)`
         .left-days {
           color: #eb5757;
         }
+
+        & > .rotate {
+          transform: rotate(180deg);
+        }
       }
     }
 
@@ -123,6 +135,10 @@ const TaskItemStyled = styled(InboxItemStyled)`
       flex-direction: column;
       gap: 13px;
       margin-top: 16px;
+
+      &.hidden {
+        display: none;
+      }
 
       .detail-item {
         display: flex;

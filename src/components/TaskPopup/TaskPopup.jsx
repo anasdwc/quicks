@@ -1,18 +1,58 @@
 import React, { useState, useEffect } from "react";
 import { ButtonStyled } from "../../styles/Button.styled";
 import { FlexContainer } from "../../styles/Container.styled";
+import { HeaderTaskStyled } from "../../styles/Popup.styled";
 import Loading from "../Loading";
-import { HeaderTaskStyled, TaskItemStyled } from "../../styles/Popup.styled";
-import moreIcon from "../../assets/more.svg";
-import expandIcon from "../../assets/expand.svg";
-import pencilIcon from "../../assets/pencil.svg";
-import dateIcon from "../../assets/date.svg";
-import DatePicker from "react-date-picker";
-import CalendarIcon from "./CalendarIcon";
+import TaskItem from "./TaskItem";
+
+const data = [
+  {
+    id: 1,
+    title: "Close off Case #012920 - Rodrigues, Amiguel",
+    daysLeft: 2,
+    date: "12/06/2021",
+    description:
+      "Closing off this case since this application has been cancelled. No one really understand how this case could possibly be cancelled. The options and the documents within this document were totally a guaranteed for a success!",
+    isDone: false,
+  },
+  {
+    id: 2,
+    title:
+      "Set up documentation report for several Cases: Case 145443, Case 192829 and Case 182203",
+    daysLeft: 4,
+    date: "14/06/2021",
+    description:
+      "All Cases must include all payment transactions, all document and forms filled. All conversations in comments and messages in channels and emails should be provided as well in.",
+    isDone: false,
+  },
+  {
+    id: 3,
+    title: "Set up appointment with Dr Blake",
+    daysLeft: 10,
+    date: "22/06/2021",
+    description: "",
+    isDone: false,
+  },
+  {
+    id: 4,
+    title: "Contact Mr Caleb - video conference?",
+    daysLeft: 0,
+    date: "03/06/2021",
+    description: "",
+    isDone: true,
+  },
+  {
+    id: 5,
+    title: "Assign 3 homework to Client A",
+    daysLeft: 0,
+    date: "02/06/2021",
+    description: "",
+    isDone: true,
+  },
+];
 
 function TaskPopup() {
   const [isLoading, setIsLoading] = useState(true);
-  const [value, onChange] = useState(new Date());
 
   useEffect(() => {
     setTimeout(() => {
@@ -45,63 +85,14 @@ function TaskPopup() {
         style={{ height: "100%" }}
       >
         {isLoading && <Loading text="Loading Task List..." />}
-        <TaskItemStyled>
-          <input
-            type="checkbox"
-            id="checkbox"
-          />
-          <div className="task-body">
-            <div className="task-body-header">
-              <div className="label">
-                <label htmlFor="checkbox">
-                  Close off Case #012920 - Rodrigues, Amiguel
-                </label>
-              </div>
-              <div className="action-group">
-                <p className="left-days">2 Days Left</p>
-                <p>12/06/2021</p>
-                <img
-                  src={expandIcon}
-                  alt=""
-                />{" "}
-                <img
-                  src={moreIcon}
-                  alt=""
-                />
-              </div>
-            </div>
-            <div className="task-body-detail">
-              <div className="detail-item">
-                <img
-                  src={dateIcon}
-                  alt=""
-                />
-                <div className="date-picker">
-                  <DatePicker
-                    onChange={onChange}
-                    value={value}
-                    clearIcon={null}
-                    calendarIcon={<CalendarIcon />}
-                    calendarClassName={"calendar-icon"}
-                    className={"calendar-picker"}
-                  />
-                </div>
-              </div>
-              <div className="detail-item">
-                <img
-                  src={pencilIcon}
-                  alt=""
-                />
-                <p>
-                  Closing off this case since this application has been
-                  cancelled. No one really understand how this case could
-                  possibly be cancelled. The options and the documents within
-                  this document were totally a guaranteed for a success!
-                </p>
-              </div>
-            </div>
-          </div>
-        </TaskItemStyled>
+        <div className="task-list">
+          {data.map((task) => (
+            <TaskItem
+              key={task.id}
+              {...task}
+            />
+          ))}
+        </div>
       </div>
     </FlexContainer>
   );
