@@ -144,6 +144,10 @@ const TaskItemStyled = styled(InboxItemStyled)`
         display: flex;
         gap: 24px;
 
+        img {
+          width: 20px;
+        }
+
         .react-date-picker__wrapper {
           border: 1px solid ${({ theme }) => theme.colors.lightGray};
           border-radius: 5px;
