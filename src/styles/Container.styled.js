@@ -28,4 +28,20 @@ const RelativeContainer = styled.div`
   position: relative;
 `;
 
-export { Container, GridContainer, PopupContainer, RelativeContainer };
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: ${(props) => props.flexDirection || "row"};
+  justify-content: ${(props) => props.justifyContent || "normal"};
+  height: ${(props) => props.height || "auto"};
+  gap: ${(props) => props.gap};
+  overflow-y: scroll;
+  overflow-x: hidden;
+`;
+
+export {
+  FlexContainer,
+  Container,
+  GridContainer,
+  PopupContainer,
+  RelativeContainer,
+};

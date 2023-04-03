@@ -77,3 +77,26 @@ export const CloseButton = styled(CircleButton)`
   right: 15px;
   z-index: 0;
 `;
+
+export const ButtonStyled = styled.button`
+  background-color: ${(props) =>
+    props.theme.colors[`${props.bgColor || "blue"}`]};
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  color: white;
+`;
+
+export const ButtonIconStyled = styled.button`
+  padding: 0;
+  width: fit-content;
+  height: fit-content;
+  border: none;
+  background-color: transparent;
+  margin: ${(props) => props.margin || "auto"};
+
+  & > img {
+    width: ${(props) => props.size || "24px"};
+    height: ${(props) => props.size || "24px"};
+  }
+`;

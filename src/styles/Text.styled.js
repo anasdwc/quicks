@@ -7,4 +7,29 @@ const PargraphStyled = styled.p`
   margin: ${(props) => `${props.margin}px` || "0"};
 `;
 
-export { PargraphStyled };
+const ParagraphLine = styled.p`
+  text-align: center;
+  margin-bottom: 10px;
+  color: ${(props) =>
+    props.status ? props.theme.colors.red : props.theme.colors.darkGray};
+  font-weight: bold;
+  display: flex;
+  width: 100%;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+
+  &:after,
+  &:before {
+    content: " ";
+    width: 34%;
+    background-color: ${(props) =>
+      props.status == true
+        ? props.theme.colors.red
+        : props.theme.colors.darkGray};
+    display: inline-block;
+    height: 1px;
+  }
+`;
+
+export { PargraphStyled, ParagraphLine };
